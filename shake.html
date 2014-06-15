@@ -43,9 +43,9 @@
              <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
              <ul>
                  <li><a href="#" id="profile" data-icon="custom">Perfil</a></li>
-                 <li><a href="#" id="heart" data-icon="custom"></a></li>
-                 <li><a href="#" id="map" data-icon="custom">Danger</a></li>
-                 <li><a href="#" id="help" data-icon="custom">Beer</a></li>                 
+                 <li><a href="leaflet.html" id="heart" data-icon="custom">Shake</a></li>
+                 <li><a href="heatmap.html" id="map" data-icon="custom">Mapa</a></li>
+                 <li><a href="hacksanfermin.html" id="help" data-icon="custom">Ayuda</a></li>                 
              </ul>
              </div>
          </div>
@@ -59,9 +59,57 @@
 
       </div>
       <script>
+
+        // Audio player
+        //
+        var my_media = null;
+        var mediaTimer = null;
+        function playAudio(src) {
+            if (my_media == null) {
+                // Create Media object from src
+                my_media = new Media(src, onSuccess, onError);
+            } // else play current audio
+            // Play audio
+            my_media.play();
+
+            // Update my_media position every second
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // get my_media position
+                    my_media.getCurrentPosition(
+                        // success callback
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " sec");
+                            }
+                        },
+                        // error callback
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
+
          setTimeout(function(){
             $('.odometer').html(423234);
          }, 1000);
+
+        var onShake = function () {
+          // Code fired when a shake is detected
+          //playaudio('/assets/shake.mp3');
+          vibrate();
+          window.location.href = "leaflet.html";
+        };
+
+        // Start watching for shake gestures and call "onShake"
+        shake.startWatch(onShake);
+
+        // Stop watching for shake gestures
+        //shake.stopWatch();
+
       </script>
    </body>
 </html>

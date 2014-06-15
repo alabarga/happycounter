@@ -1,0 +1,94 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+This is a skeleton html file that you can use to get you started on each new HTML project
+Autor: Alberto Labarga
+Curso: Taller de visualización de datos
+-->
+<html>
+
+<head>
+<title>HappyCounter</title>
+ <meta http-equiv="content-type" content="text/php; charset=utf-8" />
+ <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+ <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+ <script src="js/leaflet-heat.js"></script>
+ <style type="text/css">
+ #map {color:red;}
+ </style>
+
+</head>
+
+<body>
+
+ <div class="container">
+
+   <div class="contenido">
+
+
+	<div id="map" style="width: 400px; height: 800px"></div>
+   </div>
+ </div>
+
+	<script>
+
+		var map = L.map('map').setView([42.818350, -1.644050], 15);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+var smile_grande = L.icon({
+    iconUrl: './img/smile.png',
+    //shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [40, 40], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -3] // point from which the popup should open relative to the iconAnchor
+});
+
+var smile = L.icon({
+    iconUrl: './img/smile.png',
+    //shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [30, 30], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -3] // point from which the popup should open relative to the iconAnchor
+});
+
+		var start_lat = 42.819227;
+		var end_lat = 42.814398;
+		var start_lon =  -1.649826; 
+		var end_lon = -1.640015;
+		var lat = end_lat - start_lat;
+		var lon = end_lon - start_lon;
+
+		
+        var happyPoints = [
+
+         [42.818350, -1.644050, 20],
+         [42.816956, -1.643019, 10]
+
+        ];
+
+		for (i = 0; i < 100; i++) {
+
+		    var r1 = Math.random();
+		    var r2 = Math.random();
+            newPoint = [start_lat + r1 * lat, start_lon + r2 * lon, i];
+
+            happyPoints.push(newPoint);
+        }
+
+        var heat = L.heatLayer(happyPoints).addTo(map);
+		
+	</script>
+
+</body>
+</html>

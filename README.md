@@ -14,5 +14,7 @@ Happy Counter es un prototipo que utiliza [Adobe Cordova Build](http://cordova.a
 ## Licencia ##
 [Happy Counter](https://github.com/alabarga/happycoounter) tiene una licencia [GPLv3](http://www.gnu.org/copyleft/gpl.html).
 
-## Authors ##
+## Autores ##
 [Alberto Labarga](https://github.com/alabarga/) ([@alabarga](https://twitter.com/alabarga))
+Iosu Recalde
+Iñaki 
